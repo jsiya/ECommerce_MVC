@@ -5,18 +5,20 @@ namespace Product_Management_MVC.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly ISellerRepository _sellerRepository;
+    private readonly ICustomerRepository _customerRepository;
+    private readonly IAdminRepository _adminRepository;
 
-    
 
-    public HomeController(ICategoryRepository categoryRepository)
+    public HomeController(ISellerRepository sellerRepository, IAdminRepository adminRepository, ICustomerRepository customerRepository)
     {
-        _categoryRepository = categoryRepository;
+        _sellerRepository = sellerRepository;
+        _customerRepository = customerRepository;
+        _adminRepository = adminRepository;
     }
 
     public async Task<IActionResult> Index()
     {
-       // await _categoryRepository.AddAsync(new() { Name = "Shirt" });
         return View();
     }
 }
