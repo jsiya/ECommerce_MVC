@@ -1,4 +1,6 @@
 using DataAccessLayer.Contexts;
+using DataAccessLayer.Repositories.Abstracts;
+using DataAccessLayer.Repositories.Concretes;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,13 @@ builder.Services.AddDbContext<AppDbContext>(
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 });
+
+//repository register
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 
 var app = builder.Build();
 

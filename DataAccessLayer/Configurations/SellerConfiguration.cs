@@ -23,6 +23,8 @@ public class SellerConfiguration : IEntityTypeConfiguration<Seller>
             .IsRequired();
         builder.Property(c => c.Address)
             .HasColumnType("nvarchar(100)");
+        builder.Property(c => c.UserRole)
+            .HasDefaultValue("Seller");
         //relations
         builder.HasMany(s => s.Products)
             .WithOne(p => p.Seller)

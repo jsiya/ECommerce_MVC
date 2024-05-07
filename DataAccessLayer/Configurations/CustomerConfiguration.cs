@@ -22,6 +22,8 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             .IsRequired();
         builder.Property(c => c.Address)
             .HasColumnType("nvarchar(150)");
+        builder.Property(c => c.UserRole)
+            .HasDefaultValue("Customer");
         
         //relations
         builder.HasMany(c => c.Orders)

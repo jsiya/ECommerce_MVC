@@ -4,7 +4,7 @@ using Entities.Concretes;
 
 namespace DataAccessLayer.Repositories.Concretes;
 
-public class CustomerRepository : GenericRepository<Customer>
+public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
 {
     public CustomerRepository(AppDbContext context) : base(context)
     {

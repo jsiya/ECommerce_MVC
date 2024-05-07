@@ -2,7 +2,7 @@ using Entities.Concretes;
 
 namespace DataAccessLayer.Repositories.Abstracts;
 
-public interface IOrderRepository
+public interface IOrderRepository : IGenericRepository<Order>
 {
     
 }
