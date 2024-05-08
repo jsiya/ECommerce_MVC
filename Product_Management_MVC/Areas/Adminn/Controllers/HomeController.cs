@@ -23,14 +23,14 @@ public class HomeController: Controller
     [HttpGet]
     public IActionResult CreateCategory()
     {
-        return View(new Category());
+        return View();
     }
     
     [HttpPost]
     public async Task<IActionResult> CreateCategory(Category category)
     {
         await _categoryRepository.AddAsync(category);
-        return View(category);
+        return View();
     }
 
     [HttpPost]
