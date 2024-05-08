@@ -11,6 +11,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,9 +20,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Areas\Adminn\Data\" />
+      <Folder Include="Areas\Adminn\Models\" />
       <Folder Include="Views\Customer\" />
       <Folder Include="Views\Product\" />
       <Folder Include="Views\Seller\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\SignUp.cshtml" />
     </ItemGroup>
 
 </Project>
