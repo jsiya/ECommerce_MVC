@@ -21,4 +21,10 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    [HttpGet]
+    public async Task<IActionResult> SignUp()
+    {
+        return View();
+    }
 }

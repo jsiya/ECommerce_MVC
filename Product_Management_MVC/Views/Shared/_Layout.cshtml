@@ -6,6 +6,8 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="icon" type="image/png" href="~/assets/online-shop.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Product_Management_MVC.styles.css" asp-append-version="true"/>
 </head>
 <body>
@@ -17,11 +19,8 @@
         @RenderBody()
     </main>
 </div>
-
 <footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2024
-    </div>
+   @await Component.InvokeAsync("Footer")
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
