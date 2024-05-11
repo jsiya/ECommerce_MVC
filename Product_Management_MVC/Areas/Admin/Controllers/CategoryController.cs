@@ -2,24 +2,18 @@ using DataAccessLayer.Repositories.Abstracts;
 using Entities.Concretes;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Product_Management_MVC.Areas.Adminn.Controllers;
+namespace Product_Management_MVC.Areas.Admin.Controllers;
 
-
-[Area("Adminn")]
-public class HomeController: Controller
+public class CategoryController : Controller
 {
     private readonly ICategoryRepository _categoryRepository;
-
-    public HomeController(ICategoryRepository categoryRepository)
+    
+    public CategoryController(ICategoryRepository categoryRepository)
     {
         _categoryRepository = categoryRepository;
     }
     
-    public IActionResult Index()
-    {
-        return View();
-    }
-    
+        
     [HttpGet]
     public IActionResult CreateCategory()
     {
@@ -53,5 +47,4 @@ public class HomeController: Controller
         ViewBag.categories = categories;
         return View();
     }
-
 }

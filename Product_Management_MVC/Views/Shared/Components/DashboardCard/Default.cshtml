@@ -1,0 +1,38 @@
+
+<div class="dashboard-cards-sec " >
+   <a style="text-decoration: none; cursor: pointer;" href="@Url.Action("GetAllCategories", "Category")">
+      <div class=" card text-white bg-dark m-3">
+               <div class="card-body">
+                  <h1>Category Count</h1>
+                  <p>@ViewBag.CategoryCount</p>
+               </div>
+            </div>
+   </a>
+          
+   <a style="text-decoration: none; cursor: pointer;" href="@Url.Action("GetAllProducts", "Product")">
+       <div class=" card border-secondary text-black-50 m-3">
+               <div class="card-body">
+                  <h1>Product Count</h1>
+                  <p>@ViewBag.ProductCount</p>
+               </div>
+            </div>
+   </a>
+    
+   <a style="text-decoration: none; cursor: pointer;" href="@Url.Action("GetAllSellers", "Seller")">
+       <div class=" card border-secondary text-black-50 m-3">
+                <div class="card-body">
+                   <h1>Seller Count</h1>
+                   <p>@ViewBag.SellerCount</p>
+                </div>
+            </div>
+   </a>
+          
+   <a style="text-decoration: none; cursor: pointer;" href="@Url.Action("GetAllCustomers", "Customer")">
+      <div class=" card text-white bg-dark m-3">
+               <div class="card-body">
+                   <h1>Customer Count</h1>
+                   <p>@ViewBag.CustomerCount</p>
+               </div>
+            </div>
+   </a>
+</div>

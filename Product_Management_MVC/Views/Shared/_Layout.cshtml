@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -14,8 +15,8 @@
 <header>
     @await Component.InvokeAsync("Navbar")
 </header>
-<div class="container">
-    <main role="main" class="pb-3">
+<div class="d-grid ">
+    <main role="main" class="pb-3" style="margin-bottom: 200px;">
         @RenderBody()
     </main>
 </div>

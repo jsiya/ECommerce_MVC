@@ -25,3 +25,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.dashboard-cards-sec {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(350px, 1fr)); /* Two columns */
+  gap: 50px;
+  justify-content: center;
+  margin-bottom: 100px;
+}

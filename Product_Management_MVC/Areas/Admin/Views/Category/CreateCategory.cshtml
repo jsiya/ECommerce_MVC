@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Entities.Concretes.Category
 
 @{
@@ -7,7 +8,7 @@
 
 <div class="d-flex flex-column align-items-center card p-md-2 m-xl-5">
     <h1>New Category</h1>
-    <form method="post" asp-area="Adminn" asp-action="CreateCategory" asp-controller="Home" class="d-flex flex-column card-body">
+    <form method="post" asp-area="Admin" asp-action="CreateCategory" asp-controller="Category" class="d-flex flex-column card-body">
         <div  class="form-floating mb-3 ">
             <input type="text" class="form-control"  placeholder="Category Name" asp-for="Name">
             <label>Category Name</label>

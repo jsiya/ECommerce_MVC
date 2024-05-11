@@ -1,0 +1,11 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Admin Index";
+    Layout = "_Layout";
+}
+
+<div class="d-flex align-items-center justify-content-center">
+    @await Component.InvokeAsync("DashboardCard")
+</div>
+

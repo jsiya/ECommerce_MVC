@@ -5,7 +5,7 @@ namespace Product_Management_MVC.Components;
 
 public class NavbarViewComponent : ViewComponent
 {
-    public ViewViewComponentResult Invoke()
+    public IViewComponentResult Invoke()
     {
         return View();
     }
