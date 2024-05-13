@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Product_Management_MVC.Areas.Admin.Controllers;
 
+[Area("Admin")]
 public class SellerController : Controller
 {
     private readonly ISellerRepository _sellerRepository;
@@ -20,17 +21,31 @@ public class SellerController : Controller
         return RedirectToAction("");
     }
     [HttpPost]
-    public async Task<IActionResult> UpdateSeller(Seller seller)
+    [HttpGet]
+    public async Task<IActionResult> EditSeller(int id)
     {
-        await _sellerRepository.UpdateAsync(seller);
-        return RedirectToAction("GetAllSellers");
+        var seller = await _sellerRepository.GetByIdAsync(id);
+        ViewBag.Seller = seller;
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> UpdateSeller(Entities.Concretes.Seller seller)
+    {
+        var updatedSeller = await  _sellerRepository.GetByIdAsync(seller.Id);
+        if (updatedSeller is not null)
+        {
+            await _sellerRepository.UpdateAsync(seller);
+            return RedirectToAction("GetAllSellers");
+        }
+        return RedirectToAction("EditSeller", seller.Id);
     }
     
     [HttpGet]
     public async Task<IActionResult> GetAllSellers()
     {
         var sellers = await _sellerRepository.GetAllAsync();
-        ViewBag.sellers = sellers;
+        ViewBag.Sellers = sellers;
         return View();
     }
 }

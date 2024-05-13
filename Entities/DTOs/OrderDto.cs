@@ -1,6 +1,6 @@
 namespace Entities.DTOs;
 
-public class OrderDto
+public record OrderDto
 {
-    
+    public Double TotalPrice { get; set; }
 }

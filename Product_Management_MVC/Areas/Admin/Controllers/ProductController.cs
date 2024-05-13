@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Product_Management_MVC.Areas.Admin.Controllers;
 
+[Area("Admin")]
 public class ProductController : Controller
 {
     private readonly IProductRepository _productRepository;
@@ -19,18 +20,31 @@ public class ProductController : Controller
         await _productRepository.DeleteAsync(id);
         return RedirectToAction("");
     }
-    [HttpPost]
-    public async Task<IActionResult> UpdateProduct(Product product)
+    [HttpGet]
+    public async Task<IActionResult> EditProduct(int id)
     {
-        await _productRepository.UpdateAsync(product);
-        return RedirectToAction("GetAllProducts");
+        var product = await _productRepository.GetByIdAsync(id);
+        ViewBag.Product = product;
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> UpdateProduct(Entities.Concretes.Product product)
+    {
+        var updatedProduct = await  _productRepository.GetByIdAsync(product.Id);
+        if (updatedProduct is not null)
+        {
+            await _productRepository.UpdateAsync(product);
+            return RedirectToAction("GetAllProducts");
+        }
+        return RedirectToAction("EditProduct", product.Id);
     }
     
     [HttpGet]
     public async Task<IActionResult> GetAllProducts()
     {
         var products = await _productRepository.GetAllAsync();
-        ViewBag.products = products;
+        ViewBag.Products = products;
         return View();
     }
 }

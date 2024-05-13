@@ -1,0 +1,45 @@
+@model Seller
+
+@{
+    ViewBag.Title = "Update Seller";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title card-text-custom">Seller Details</h5>
+            <div class="row">
+                <form class="col-md-6 d-flex justify-content-center flex-column align-items-md-start"
+                      method="post" asp-area="Admin" asp-action="UpdateSeller" asp-controller="Seller">
+                    <input type="hidden" asp-for="Id" value="@ViewBag.Seller.Id" />
+                    <input type="hidden" asp-for="Password" value="@ViewBag.Seller.Password" />
+                    
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="firstName">First Name: </label>
+                        <input class="w-75" id="firstName" type="text" value="@ViewBag.Seller.FirstName" asp-for="FirstName"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="lastName">Last Name: </label>
+                        <input class="w-75" id="lastName" type="text" value="@ViewBag.Seller.LastName" asp-for="LastName"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="role">Role: </label>
+                        <input class="w-75" id="role" type="text" value="@ViewBag.Seller.UserRole" asp-for="UserRole"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="address">Address: </label>
+                        <input class="w-75" id="address" type="text" value="@ViewBag.Seller.Address" asp-for="Address"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="username">Username: </label>
+                        <input class="w-75" id="username" type="text" value="@ViewBag.Seller.Username" asp-for="Username"/>
+                    </div>
+                    
+                    <button type="Submit" class="btn btn-primary mt-3">Update</button>
+                </form>
+                <button onclick="location.href='@Url.Action("GetAllSellers", "Seller")'" class="btn mt-2">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

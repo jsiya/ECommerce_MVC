@@ -1,0 +1,26 @@
+@model Category
+
+@{
+    ViewBag.Title = "Update Category";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title card-text-custom">Category Details</h5>
+            <div class="row">
+                <form class="col-md-6 d-flex justify-content-center flex-column align-items-md-start"
+                      method="post" asp-area="Admin" asp-action="UpdateCategory" asp-controller="Category">
+                    <input type="hidden" asp-for="Id" value="@ViewBag.Category.Id" />
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="name">Name: </label>
+                        <input class="w-75" id="name" type="text" value="@ViewBag.Category.Name" asp-for="Name"/>
+                    </div>
+                    <button type="Submit" class="btn btn-primary mt-3">Update</button>
+                </form>
+                <button onclick="location.href='@Url.Action("GetAllCategories", "Category")'" class="btn mt-2">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

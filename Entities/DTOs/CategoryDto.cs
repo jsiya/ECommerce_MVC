@@ -1,6 +1,6 @@
 namespace Entities.DTOs;
 
-public class CategoryDto
+public record CategoryDto
 {
     public string Name { get; set; }
 }

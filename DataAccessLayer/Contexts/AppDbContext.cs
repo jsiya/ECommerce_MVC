@@ -12,6 +12,8 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseLazyLoadingProxies();
+        optionsBuilder.EnableSensitiveDataLogging();
+        
         base.OnConfiguring(optionsBuilder);
     }
 

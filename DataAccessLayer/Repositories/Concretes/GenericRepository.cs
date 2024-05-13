@@ -39,6 +39,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : Entity, new(
 
     public async Task UpdateAsync(T entity)
     {
+        Context.ChangeTracker.Clear();
         Context.Set<T>().Update(entity);
         await Context.SaveChangesAsync();
     }
