@@ -1,6 +1,7 @@
 using DataAccessLayer.Repositories.Abstracts;
 using Entities.Concretes;
 using Microsoft.AspNetCore.Mvc;
+using Product_Management_MVC.ViewModels;
 
 namespace Product_Management_MVC.Areas.Admin.Controllers;
 
@@ -25,17 +26,31 @@ public class SellerController : Controller
     public async Task<IActionResult> EditSeller(int id)
     {
         var seller = await _sellerRepository.GetByIdAsync(id);
-        ViewBag.Seller = seller;
+        SellerViewModel sellerViewModel = new()
+        {
+            Id = seller.Id,
+            FirstName = seller.FirstName,
+            LastName = seller.LastName,
+            Address = seller.Address,
+            UserRole = seller.UserRole,
+            Username = seller.Username,
+            Password = seller.Password
+        };
+        ViewBag.Seller = sellerViewModel;
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateSeller(Entities.Concretes.Seller seller)
+    public async Task<IActionResult> UpdateSeller(SellerViewModel seller)
     {
         var updatedSeller = await  _sellerRepository.GetByIdAsync(seller.Id);
         if (updatedSeller is not null)
         {
-            await _sellerRepository.UpdateAsync(seller);
+            updatedSeller.FirstName = seller.FirstName;
+            updatedSeller.LastName = seller.LastName;
+            updatedSeller.Username = seller.Username;
+            updatedSeller.Address = seller.Address;
+            await _sellerRepository.UpdateAsync(updatedSeller);
             return RedirectToAction("GetAllSellers");
         }
         return RedirectToAction("EditSeller", seller.Id);

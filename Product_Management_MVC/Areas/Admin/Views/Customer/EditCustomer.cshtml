@@ -1,4 +1,4 @@
-@model Seller
+@model CustomerViewModel
 
 @{
     ViewBag.Title = "Update Customer";
@@ -8,12 +8,11 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title card-text-custom">Seller Details</h5>
+            <h5 class="card-title card-text-custom">Customer Details</h5>
             <div class="row">
                 <form class="col-md-6 d-flex justify-content-center flex-column align-items-md-start"
                       method="post" asp-area="Admin" asp-action="UpdateCustomer" asp-controller="Customer">
                     <input type="hidden" asp-for="Id" value="@ViewBag.Customer.Id" />
-                    <input type="hidden" asp-for="Password" value="@ViewBag.Customer.Password" />
                     
                     <div class="form-group mt-3 d-flex w-100 justify-content-between">
                         <label for="firstName">First Name: </label>
@@ -33,7 +32,11 @@
                     </div>
                     <div class="form-group mt-3 d-flex w-100 justify-content-between">
                         <label for="username">Username: </label>
-                        <input class="w-75" id="username" type="text" value="@ViewBag.Customer.Username" asp-for="Username" disabled/>
+                        <input class="w-75" id="username" type="text" value="@ViewBag.Customer.Username" asp-for="Username"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="password">Password: </label>
+                        <input class="w-75" id="password" type="password" value="@ViewBag.Customer.Password" asp-for="Password" disabled/>
                     </div>
                     
                     <button type="Submit" class="btn btn-primary mt-3">Update</button>

@@ -1,6 +1,7 @@
 using DataAccessLayer.Repositories.Abstracts;
 using Entities.Concretes;
 using Microsoft.AspNetCore.Mvc;
+using Product_Management_MVC.ViewModels;
 
 namespace Product_Management_MVC.Areas.Admin.Controllers;
 
@@ -26,17 +27,33 @@ public class CustomerController: Controller
     public async Task<IActionResult> EditCustomer(int id)
     {
         var customer = await _customerRepository.GetByIdAsync(id);
-        ViewBag.customer = customer;
+        CustomerViewModel customerViewModel = new()
+        {
+            Id = customer.Id,
+            FirstName = customer.FirstName,
+            LastName = customer.LastName,
+            Address = customer.Address,
+            Username = customer.Username,
+            Password = customer.Password,
+            UserRole = customer.UserRole
+        };
+        
+        ViewBag.Customer = customerViewModel;
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateCustomer(Entities.Concretes.Customer customer)
+    public async Task<IActionResult> UpdateCustomer(CustomerViewModel customer)
     {
         var updatedCustomer = await  _customerRepository.GetByIdAsync(customer.Id);
         if (updatedCustomer is not null)
         {
-            await _customerRepository.UpdateAsync(customer);
+            updatedCustomer.Username = customer.Username;
+            updatedCustomer.Address = customer.Address;
+            updatedCustomer.LastName = customer.LastName;
+            updatedCustomer.FirstName = customer.FirstName;
+            
+            await _customerRepository.UpdateAsync(updatedCustomer);
             return RedirectToAction("GetAllCustomers");
         }
         return RedirectToAction("EditCustomer", customer.Id);
