@@ -1,0 +1,48 @@
+@model ProductViewModel
+
+@{
+    ViewBag.Title = "Update Product";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title card-text-custom">Product Details</h5>
+            <div class="row">
+                <form class="col-md-6 d-flex justify-content-center flex-column align-items-md-start"
+                      method="post" asp-area="Admin" asp-action="UpdateProduct" asp-controller="Product">
+                    <input type="hidden" asp-for="Id" value="@ViewBag.Product.Id" />
+                    
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="firstName">Name: </label>
+                        <input class="w-75" id="firstName" type="text" value="@ViewBag.Product.Name" asp-for="Name"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="description">Description: </label>
+                        <input class="w-75" id="description" type="text" value="@ViewBag.Product.Description" asp-for="Description"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="price">Price: </label>
+                        <input class="w-75" id="price" type="text" value="@ViewBag.Product.Price" asp-for="Price" disabled/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="stock">Stock: </label>
+                        <input class="w-75" id="stock" type="text" value="@ViewBag.Product.Stock" asp-for="Stock"/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="seller">Seller: </label>
+                        <input class="w-75" id="seller" type="text" value="@ViewBag.Product.SellerUsername" asp-for="SellerUsername" disabled/>
+                    </div>
+                    <div class="form-group mt-3 d-flex w-100 justify-content-between">
+                        <label for="category">Category: </label>
+                        <input class="w-75" id="category" type="text" value="@ViewBag.Product.Category" asp-for="Category" disabled/>
+                    </div>
+                    
+                    <button type="Submit" class="btn btn-primary mt-3">Update</button>
+                </form>
+                <button onclick="location.href='@Url.Action("GetAllProducts", "Product")'" class="btn mt-2">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 using DataAccessLayer.Repositories.Abstracts;
 using Entities.Concretes;
 using Microsoft.AspNetCore.Mvc;
+using Product_Management_MVC.ViewModels;
 
 namespace Product_Management_MVC.Areas.Admin.Controllers;
 
@@ -24,17 +25,32 @@ public class ProductController : Controller
     public async Task<IActionResult> EditProduct(int id)
     {
         var product = await _productRepository.GetByIdAsync(id);
-        ViewBag.Product = product;
+        ProductViewModel productVm = new()
+        {
+            Category = product.Category.Name,
+            Description = product.Description,
+            Id = product.Id,
+            ImageUrl = product.ImageUrl,
+            Name = product.Name,
+            Price = product.Price,
+            SellerUsername = product.Seller.Username,
+            Stock = product.Stock
+        };
+        ViewBag.Product = productVm;
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> UpdateProduct(Entities.Concretes.Product product)
+    public async Task<IActionResult> UpdateProduct(ProductViewModel product)
     {
         var updatedProduct = await  _productRepository.GetByIdAsync(product.Id);
         if (updatedProduct is not null)
         {
-            await _productRepository.UpdateAsync(product);
+            updatedProduct.Name = product.Name;
+            updatedProduct.Description = product.Description;
+            updatedProduct.Stock = product.Stock;
+            
+            await _productRepository.UpdateAsync(updatedProduct);
             return RedirectToAction("GetAllProducts");
         }
         return RedirectToAction("EditProduct", product.Id);
