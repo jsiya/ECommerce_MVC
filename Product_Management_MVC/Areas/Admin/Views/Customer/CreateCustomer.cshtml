@@ -1,0 +1,60 @@
+@model Customer
+
+@{
+    ViewBag.Title = "Create Customer";
+    Layout = "_Layout";
+}
+
+<div class="d-flex flex-column align-items-center card p-md-2 m-xl-5">
+    <h1>New Customer</h1>
+    <form method="post" asp-area="Admin" asp-action="CreateCustomer" asp-controller="Customer" class="d-flex flex-column card-body">
+        <div  class="form-floating mb-3 ">
+            <input type="text" class="form-control"  placeholder="Customer Firstname" asp-for="FirstName">
+            <label>Customer Firstname</label>
+            <span asp-validation-for="FirstName"  style="color: red; font-size: 10px;"></span>
+        </div>
+        <div  class="form-floating mb-3 ">
+            <input type="text" class="form-control"  placeholder="Customer LastName" asp-for="LastName">
+            <label>Customer LastName</label>
+            <span asp-validation-for="FirstName"  style="color: red; font-size: 10px;"></span>
+        </div>
+        <div  class="form-floating mb-3 ">
+            <input type="text" class="form-control"  placeholder="Customer Address" asp-for="Address">
+            <label>Customer Address</label>
+            <span asp-validation-for="FirstName"  style="color: red; font-size: 10px;"></span>
+        </div>
+        <div  class="form-floating mb-3 ">
+            <input type="text" class="form-control"  placeholder="Customer Username" asp-for="Username">
+            <label>Customer Username</label>
+            <span asp-validation-for="FirstName"  style="color: red; font-size: 10px;"></span>
+        </div>
+        <div  class="form-floating mb-3 ">
+            <input type="password" class="form-control"  placeholder="Customer Password" asp-for="Password">
+            <label>Customer Password</label>
+            <span asp-validation-for="FirstName"  style="color: red; font-size: 10px;"></span>
+        </div>
+        @* <div  class="form-floating mb-3 "> *@
+        @*     <label id="roleLabel" for="role">Choose a role:</label> *@
+        @*     <select id="role" asp-for="UserRole" class="form-select"> *@
+        @*         <option> </option> *@
+        @*         <option value="Admin">Admin</option> *@
+        @*         <option value="Customer">Customer</option> *@
+        @*         <option value="Seller">Seller</option> *@
+        @*     </select> *@
+        @* </div> *@
+        
+        
+        <button class="btn btn-danger m-5" type="submit">Create</button>
+    </form>
+</div>
+
+@* <script> *@
+@*     document.getElementById('role').addEventListener('change', function() { *@
+@*         var label = document.getElementById('roleLabel'); *@
+@*         if (this.value) { *@
+@*             label.style.display = 'none'; *@
+@*         } else { *@
+@*             label.style.display = 'block'; *@
+@*         } *@
+@*     }); *@
+@* </script> *@

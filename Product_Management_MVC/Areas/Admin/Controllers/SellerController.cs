@@ -14,6 +14,28 @@ public class SellerController : Controller
     {
         _sellerRepository = sellerRepository;
     }
+    
+    [HttpGet]
+    public IActionResult CreateSeller()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> CreateSeller(SellerViewModel seller)
+    {
+        Entities.Concretes.Seller newSeller = new()
+        {
+            Id = seller.Id,
+            FirstName = seller.FirstName,
+            LastName = seller.LastName,
+            Address = seller.Address,
+            Password = seller.Password,
+            Username = seller.Username
+        };
+        await _sellerRepository.AddAsync(newSeller);
+        return View();
+    }
 
     [HttpPost]
     public async Task<IActionResult> DeleteSeller(int id)

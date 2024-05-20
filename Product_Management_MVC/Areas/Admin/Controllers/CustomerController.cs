@@ -16,6 +16,28 @@ public class CustomerController: Controller
         _customerRepository = customerRepository;
     }
 
+    [HttpGet]
+    public IActionResult CreateCustomer()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> CreateCustomer(CustomerViewModel customer)
+    {
+        Entities.Concretes.Customer newCustomer = new()
+        {
+            Id = customer.Id,
+            FirstName = customer.FirstName,
+            LastName = customer.LastName,
+            Address = customer.Address,
+            Password = customer.Password,
+            Username = customer.Username
+        };
+        await _customerRepository.AddAsync(newCustomer);
+        return View();
+    }
+    
     [HttpPost]
     public async Task<IActionResult> DeleteCustomer(int id)
     {
